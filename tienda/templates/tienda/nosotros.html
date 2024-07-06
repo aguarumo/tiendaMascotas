@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="{% static 'tienda/Imagenes/Logo Tarjeta.png' %}">
+        <link  rel="stylesheet" href="{% static 'tienda/css/estilo.css' %}" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+         <!-- Agrego Libreria Jquery -->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+         <!-- Agrego Bootstrap: -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
+       
+    <title>Mascotik Store</title>
+</head>
+
+<body>
+    {% include 'tienda/includes/navbar.html' %}
+    <br>
+    {% block content %}
+  
+    <br>
+
+
+    <div class="contenedor">
+        <div class="container">
+            <div class="row align-items-center">
+                    <div class="col-md-12 text-center">
+                        <h3><strong>Bienvenido a Mascotik Store</strong></h3>
+                        <p><strong>Somos un grupo de tres amigos apasionados por los animales que decidimos unirnos para crear esta tienda con un propósito muy especial: apoyar a las fundaciones que se encargan de rescatar, alimentar y encontrar un hogar a animalitos en situación de calle.</strong> </p>
+                        <p><strong>En Mascotik Store, no solo encontrarás productos de alta calidad para consentir a tus mascotas, sino que también estarás contribuyendo a una causa noble. Una parte de nuestras ganancias se destina directamente a estas fundaciones, ayudando a financiar su importante labor y asegurando que más animalitos reciban el cuidado y el amor que merecen.</strong></p>
+                        <p><strong>Nuestro compromiso va más allá de simplemente ofrecer productos para mascotas; queremos marcar la diferencia en la vida de aquellos que no tienen voz. Cada compra que realizas en nuestra tienda no solo beneficia a tu mascota, sino que también contribuye a cambiar la vida de otros animales necesitados.</strong> </p>
+                        <p><strong>Te invitamos a explorar nuestra tienda y a unirte a nosotros en esta hermosa misión de ayudar a quienes más lo necesitan. ¡Juntos podemos hacer un mundo mejor para todos los seres vivos! </strong> </p> <br>
+
+                        <p><strong>   ¡Gracias por tu apoyo! </strong> </p> <br>
+                            
+                        <p><strong>   El equipo de Mascotik </strong> </p> 
+                        <p><strong>   Astrid Coy </strong> </p> 
+                        <p><strong>   Boris Seijas </strong> </p> 
+                        <p><strong>   Andres Guarumo </strong> </p> 
+
+                        <img src="{% static 'tienda/imagenes/equipo.jpg' %}" alt="Equipo Mascotik" width="500" height="600">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <br>
+
+    <br>
+    {% endblock %}
+
+    {% include 'tienda/includes/tarjeta.html' %}
+</body>
+</html>
