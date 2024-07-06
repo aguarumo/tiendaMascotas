@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import abstractUser
 # Create your models here.
 
 
@@ -26,3 +26,15 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+class Usuario(abstractUser):
+    
+    usuario = models.CharField(max_length=255)
+    nombre = models.TextField()
+    rut = models.IntegerField()
+    correo = models.TextField()
+    telefono = models.IntegerField()
+    direccion = models.TextField()
+
+    def __str__(self):
+        return self.usuario
