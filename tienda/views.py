@@ -103,8 +103,8 @@ def registro_view(request):
     return render(request, 'processes/register.html', {'form': form})
 
 def manage_usuarios(request):
-    users = Usuario.objects.all()
-    context = {'users': users}
+    usuarios = Usuario.objects.all()
+    context = {'usuarios': usuarios}
     return render(request, 'tienda/manage_usuarios.html', context)
 
 def user_list(request):
@@ -140,8 +140,8 @@ def delete_user_view(request, user_id):
     if request.method == "POST":
         user.delete()
         messages.success(request, "Usuario eliminado exitosamente.")
-        return redirect('manage_users')
-    return render(request, 'tienda/confirm_delete.html', {'use': user})
+        return redirect('manage_usuarios')
+    return render(request, 'tienda/confirm_delete.html', {'user': user})
 
 def profile_view(request):
     user = request.user  # Obtener el usuario actualmente autenticado
@@ -161,3 +161,17 @@ def profile_view(request):
         'user': user,
     }
     return render(request, 'tienda/profile.html', context)
+
+def registro_view(request):
+    if request.method == 'POST':
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(request.session.get('previous_page', 'manage_usuarios'))
+        else:
+            return render(request, 'tienda/register.html', {'form': form, 'errors': form.errors})
+    else:
+        request.session['previous_page'] = request.META.get('HTTP_REFERER', 'manage_usuarios')
+        form = RegistroForm()
+    return render(request, 'tienda/register.html', {'form': form})

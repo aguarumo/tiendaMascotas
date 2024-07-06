@@ -43,42 +43,44 @@
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
-              {% if usuarios %}
+                {% if usuarios %}
                 <thead class="thead-light">
-                  <tr>
-                    <th>Nombre de usuario</th>
-                    <th>Correo electrónico</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>RUT</th>
-                    <th>Eliminar</th>
-                    <th>Modificar</th>
-                  </tr>
+                    <tr>
+                        <th>Nombre de usuario</th>
+                        <th>Correo electrónico</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>RUT</th>
+                        <th>Eliminar</th>
+                        <th>Modificar</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  {% for usuario in usuarios %}
+                    {% for usuario in usuarios %}
                     <tr>
-                      <td>{{ usuario.username }}</td>
-                      <td>{{ usuario.email }}</td>
-                      <td>{{ usuario.telefono }}</td>
-                      <td>{{ usuario.direccion }}</td>
-                      <td>{{ usuario.nombre }}</td>
-                      <td>{{ usuario.apellido }}</td>
-                      <td>{{ usuario.rut }}</td>
-                      <td><a href="{% url 'delete_user_view' usuario.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
-                      <td><a href="{% url 'update_user' usuario.id %}" class="btn btn-primary btn-sm">Modificar</a></td>
+                        <td>{{ usuario.username }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{{ usuario.telefono }}</td>
+                        <td>{{ usuario.direccion }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.apellido }}</td>
+                        <td>{{ usuario.rut }}</td>
+                        <td><a href="{% url 'delete_user_view' usuario.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
+                        <td><a href="{% url 'update_user' usuario.id %}" class="btn btn-primary btn-sm">Modificar</a></td>
                     </tr>
-                  {% endfor %}
+                    {% endfor %}
                 </tbody>
-              {% else %}
-                <tr>
-                  <td colspan="9">No hay usuarios registrados.</td>
-                </tr>
-              {% endif %}
+                {% else %}
+                <tbody>
+                    <tr>
+                        <td colspan="9">No hay usuarios registrados.</td>
+                    </tr>
+                </tbody>
+                {% endif %}
             </table>
-          </div>
+        </div>
 
 
         <div class="text-center mt-4">
