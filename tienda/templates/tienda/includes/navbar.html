@@ -1,52 +1,52 @@
 {% load static %}
 <nav id="navbar" class="navbar navbar-expand-lg bg-color">
   <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-          <img src="{% static 'tienda/Imagenes/Logo navbar.png' %}" alt="Logo" class="navbar-logo">
-      <strong>Mascotik Store</strong>  
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'tienda/Imagenes/Logo navbar.png' %}" alt="Logo" class="navbar-logo">
+      <strong>Mascotik Store</strong>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-         <li class="nav-item">
-           <a class="nav-link" href="{% url 'index' %}" data-target="main"><strong>Inicio</strong></a>
+          <a class="nav-link" href="{% url 'index' %}" data-target="main"><strong>Inicio</strong></a>
+        </li>
         <li class="nav-item">
-        <a class="nav-link" href="{% url 'nosotros' %}" data-target="nosotros"><strong>Nosotros</strong></a>
+          <a class="nav-link" href="{% url 'nosotros' %}" data-target="nosotros"><strong>Nosotros</strong></a>
+        </li>
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="" data-target="tienda" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <strong>Tienda</strong>  
+          <a class="nav-link dropdown-toggle" href="" data-target="tienda" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <strong>Tienda</strong>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="ropa" data-categoria="ropa"><strong>Ropa</strong></a></li>
             <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="alimentos" data-categoria="alimentos"><strong>Alimentos</strong></a></li>
             <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="juguetes" data-categoria="juguetes"><strong>Juguetes y Accesorios </strong></a></li>
             <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="farmacia" data-categoria="farmacia"><strong>Cuidado y Farmacia</strong> </a></li>
-            <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="limpieza" data-categoria="limpieza" > <strong>Baños y limpieza</strong></a></li>
-            <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="exoticos" data-categoria="exoticos"> <strong>Mascotas Exoticas</strong></a></li>
-            </ul>
-         <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="" data-target="donaciones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             <strong>Donaciones</strong>  
-           </a>
-           <ul class="dropdown-menu">
-           <li><a class="dropdown-item" href="" data-target="donaciones" data-categoria="ropa"><strong>fundaciones</strong></a></li>
-           <li><a class="dropdown-item" href="" data-target="formularioDonaciones" data-categoria="alimentos"><strong>Formulario Donaciones</strong></a></li>
-           </ul>
-         </li>
-        <li class="nav-item">
-          <a class="nav-link" href= "" data-target="contacto"><strong>Contacto</strong></a>
-        </li>  
+            <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="limpieza" data-categoria="limpieza"><strong>Baños y limpieza</strong></a></li>
+            <li><a class="dropdown-item" href="{% url 'tienda' %}" data-target="exoticos" data-categoria="exoticos"><strong>Mascotas Exoticas</strong></a></li>
+          </ul>
         </li>
-        </ul>
-        <formSearch class="d-flex" role="Buscar">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" data-target="donaciones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <strong>Donaciones</strong>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="" data-target="donaciones" data-categoria="ropa"><strong>Fundaciones</strong></a></li>
+            <li><a class="dropdown-item" href="" data-target="formularioDonaciones" data-categoria="alimentos"><strong>Formulario Donaciones</strong></a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" data-target="contacto"><strong>Contacto</strong></a>
+        </li>
+      </ul>
+      <form class="d-flex" role="Buscar">
         <input class="form-control me-2" type="Buscar" placeholder="¿Buscas algo especial?" aria-label="Buscar">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </formSearch>
- 
+      </form>
+      <a class="btn btn-primary ms-2" href="{% url 'login' %}" role="button">Ingresar a Portal</a>
     </div>
-    </div>
- 
- </nav>
+  </div>
+</nav>

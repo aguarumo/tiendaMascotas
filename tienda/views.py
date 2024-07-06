@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth import login, logout, authenticate
 from django.http import JsonResponse
-from .models import Producto
+from .models import Producto,Usuario,Profile
 from django.contrib import messages
-from .forms import ProductoForm
+from .forms import ProductoForm,RegistroForm,ActualizacionUsuarioForm,UserProfileForm
 # Create your views here.
 
 def index(request):
@@ -66,3 +67,97 @@ def eliminar_producto(request, producto_id):
         messages.success(request, 'Producto eliminado con éxito.')
         return redirect('lista_productos')
     return render(request, 'tienda/confirmacion_eliminar_producto.html', {'producto': producto})
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            if user:
+                return redirect('admin_index')  
+        else:
+            messages.error(request, 'Credenciales inválidas.')
+    return render(request, 'tienda/login.html')
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+def registro_view(request):
+    if request.method == 'POST':
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+        
+            return redirect(request.session.get('previous_page', 'manage_users'))
+        else:
+            return render(request, 'processes/register.html', {'form': form, 'errors': form.errors})
+    else:
+        request.session['previous_page'] = request.META.get('HTTP_REFERER', 'manage_users')
+        form = RegistroForm()
+    return render(request, 'processes/register.html', {'form': form})
+
+def manage_usuarios(request):
+    users = Usuario.objects.all()
+    context = {'users': users}
+    return render(request, 'tienda/manage_usuarios.html', context)
+
+def user_list(request):
+    users = Usuario.objects.all()
+    context = {'users': users}
+    return render(request, 'tienda/manage_usuarios.html', context)
+
+def find_edit_user(request, user_id):
+    user = get_object_or_404(Usuario, id=user_id)
+    context = {'user': user}
+    return render(request, 'tienda/update_user.html', context)
+
+def update_user(request, user_id):
+    user = get_object_or_404(Usuario, id=user_id)
+
+    if request.method == "POST":
+        form = ActualizacionUsuarioForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Perfil actualizado.")
+            return redirect('manage_usuarios')
+        else:
+            messages.error(request, "Por favor corrige los errores a continuación.")
+            context = {'form': form, 'user': user}
+            return render(request, 'tienda/update_user.html', context)
+    else:
+        form = ActualizacionUsuarioForm(instance=user)
+        context = {'form': form, 'user': user}
+        return render(request, 'tienda/update_user.html', context)
+
+def delete_user_view(request, user_id):
+    user = get_object_or_404(Usuario, id=user_id)
+    if request.method == "POST":
+        user.delete()
+        messages.success(request, "Usuario eliminado exitosamente.")
+        return redirect('manage_users')
+    return render(request, 'tienda/confirm_delete.html', {'use': user})
+
+def profile_view(request):
+    user = request.user  # Obtener el usuario actualmente autenticado
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil actualizado correctamente.')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Por favor corrige los errores a continuación.')
+    else:
+        form = UserProfileForm(instance=user)
+    
+    context = {
+        'form': form,
+        'user': user,
+    }
+    return render(request, 'tienda/profile.html', context)
