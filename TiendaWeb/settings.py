@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tienda',
+
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TiendaWeb.urls'
+
 
 TEMPLATES = [
     {
@@ -75,6 +77,7 @@ LOGIN_REDIRECT_URL ="menu"
 
 
 WSGI_APPLICATION = 'TiendaWeb.wsgi.application'
+
 
 
 # Database
