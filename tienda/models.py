@@ -3,16 +3,13 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
-class Producto(models.Model):
-    categoria_choices = [
-        ('alimentos', 'Alimentos'),
-        ('exoticos', 'Exóticos'),
-        ('farmacia', 'Farmacia'),
-        ('juguetes', 'Juguetes'),
-        ('limpieza', 'Limpieza'),
-        ('ropa', 'Ropa'),
-    ]
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.nombre
+
+class Producto(models.Model):
     titulo = models.CharField(max_length=255)
     imagen = models.ImageField(upload_to='media/imagenes/')
     descripcion = models.TextField()
@@ -22,7 +19,7 @@ class Producto(models.Model):
     codigo = models.CharField(max_length=255)
     envio = models.BooleanField(default=True)
     retiro = models.BooleanField(default=True)
-    categoria = models.CharField(max_length=20, choices=categoria_choices)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.titulo

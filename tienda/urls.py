@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('index', views.index, name='index'),
+    path('', views.index, name='index'),
     path('tienda_productos/', views.tienda_productos, name='tienda_productos'),
     path('tienda', views.tienda, name='tienda'),
     path('nosotros', views.nosotros, name='nosotros'),
@@ -20,5 +21,6 @@ urlpatterns = [
     path('user/update/<int:user_id>/', views.update_user, name='update_user'),
     path('profile/', views.profile_view, name='profile'),
     path('user/<int:user_id>/delete/', views.delete_user_view, name='delete_user_view'),
+    path('formulario', views.formulario, name='formulario'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
  

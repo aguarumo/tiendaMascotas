@@ -20,6 +20,9 @@ def tienda_productos(request):
 def tienda(request):
     return render(request, 'tienda/tienda.html')
 
+def formulario(request):
+    return render(request, 'tienda/formulario.html')
+
 def nosotros(request):
     return render(request, 'tienda/nosotros.html')
 
@@ -36,13 +39,17 @@ def creacion_producto(request):
         form = ProductoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Producto creado exitosamente.')
             return redirect('lista_productos')
         else:
-            messages.error(request, 'Error al añadir el producto.')
+            messages.error(request, 'Por favor corrige los errores a continuación.')
     else:
         form = ProductoForm()
-    return render(request, 'tienda/creacion_producto.html', {'form': form})
-
+    
+    context = {
+        'form': form
+    }
+    return render(request, 'tienda/creacion_producto.html', context)
 
 def editar_producto(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
@@ -144,7 +151,7 @@ def delete_user_view(request, user_id):
     return render(request, 'tienda/confirm_delete.html', {'user': user})
 
 def profile_view(request):
-    user = request.user  # Obtener el usuario actualmente autenticado
+    user = request.user  
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=user)
         if form.is_valid():

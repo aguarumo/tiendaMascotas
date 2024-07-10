@@ -21,11 +21,11 @@
     {% include 'tienda/includes/navbar_administrador.html' %}
     <div class="container">
         <h2 class="text-center">Eliminar Producto</h2>
-        <p>¿Está seguro de que desea eliminar el producto "{{ producto.nombre }}"?</p>
         <form method="post">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-            <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Cancelar</a>
+            <p>¿Estás seguro de que deseas eliminar el producto "{{ producto.titulo }}"?</p>
+            <button type="submit">Sí, eliminar</button>
+            <a href="{% url 'lista_productos' %}">Cancelar</a>
         </form>
     </div>
 </body>

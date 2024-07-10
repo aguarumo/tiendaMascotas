@@ -1,8 +1,10 @@
 from django import forms
-from .models import  Producto,Usuario,Profile
+from .models import  Producto,Usuario,Profile,Categoria
 
 
 class ProductoForm(forms.ModelForm):
+    categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), empty_label="Seleccione una categoría")
+
     class Meta:
         model = Producto
         fields = [
@@ -17,15 +19,13 @@ class ProductoForm(forms.ModelForm):
             'retiro', 
             'categoria'
         ]
-    
-def clean_codigo(self):
+
+    def clean_codigo(self):
         codigo = self.cleaned_data.get('codigo')
-        instance = getattr(self, 'instance', None)
-        if instance and instance.pk:
+        if self.instance.pk:
             return codigo
         if Producto.objects.filter(codigo=codigo).exists():
             raise forms.ValidationError("Este código ya existe.")
-        
         return codigo
 
 class RegistroForm(forms.ModelForm):
@@ -82,7 +82,3 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ('nombre', 'apellido', 'rut', 'telefono', 'direccion')
-
-    def clean(self):
-        cleaned_data = super().clean()
-        return cleaned_data
