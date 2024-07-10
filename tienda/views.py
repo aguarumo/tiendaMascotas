@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import JsonResponse
 from .models import Producto,Usuario,Profile
 from django.contrib import messages
-from .forms import ProductoForm,RegistroForm,ActualizacionUsuarioForm,UserProfileForm
+from .forms import ProductoForm,RegistroForm,ActualizacionUsuarioForm,UserProfileForm,LoginForm
 # Create your views here.
 
 def index(request):
@@ -77,16 +77,20 @@ def eliminar_producto(request, producto_id):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            if user:
-                return redirect('admin_index')  
-        else:
-            messages.error(request, 'Credenciales inválidas.')
-    return render(request, 'tienda/login.html')
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Inicio de sesión exitoso.')
+                return redirect('admin_index')  # Redirigir a la página principal o donde desees
+            else:
+                messages.error(request, 'Usuario o contraseña incorrectos.')
+    else:
+        form = LoginForm()
+    return render(request, 'tienda/login.html', {'form': form})
 
 
 

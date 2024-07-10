@@ -137,6 +137,6 @@ MESSAGE_TAGS = {
 }
 
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/logged_out/'
 LOGIN_URL = '/login/'
