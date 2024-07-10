@@ -41,7 +41,7 @@ $(document).ready(function() {
         $.getJSON("tienda_productos/", function(data) {
             $.each(data.productos, function(index, producto) {
                 var nuevaTarjeta = $("<div class='card tarjetas mb-3 me-3' style='width: 22rem;'>");
-                var imagenUrl = "{{ MEDIA_URL }}" + producto.imagen;
+                var imagenUrl = "media/" + producto.imagen;
                 nuevaTarjeta.append("<img src='" + imagenUrl + "' class='card-img-top' alt='" + producto.titulo + "'>");
                 nuevaTarjeta.append("<p class='card-text text-center'><strong>" + producto.titulo + "</strong></p>");
                 var ul = $("<ul>");

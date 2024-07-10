@@ -34,12 +34,12 @@
             <strong>Donaciones</strong>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="" data-target="donaciones" data-categoria="ropa"><strong>Fundaciones</strong></a></li>
+            <li><a class="dropdown-item" href="{% url 'donaciones' %}" data-target="donaciones" data-categoria="ropa"><strong>Fundaciones</strong></a></li>
             <li><a class="dropdown-item" href="{% url 'formulario' %}" data-target="formularioDonaciones" data-categoria="alimentos"><strong>Formulario Donaciones</strong></a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="" data-target="contacto"><strong>Contacto</strong></a>
+          <a class="nav-link" href="{% url 'contacto' %}" data-target="contacto"><strong>Contacto</strong></a>
         </li>
       </ul>
       <form class="d-flex" role="Buscar">

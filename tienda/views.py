@@ -20,6 +20,12 @@ def tienda_productos(request):
 def tienda(request):
     return render(request, 'tienda/tienda.html')
 
+def contacto(request):
+    return render(request, 'tienda/contacto.html')
+
+def donaciones(request):
+    return render(request, 'tienda/donaciones.html')
+
 def formulario(request):
     return render(request, 'tienda/formulario.html')
 
