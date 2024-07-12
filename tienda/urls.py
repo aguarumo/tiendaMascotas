@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -23,5 +25,5 @@ urlpatterns = [
     path('formulario', views.formulario, name='formulario'),
     path('donaciones', views.donaciones, name='donaciones'),
     path('contacto', views.contacto, name='contacto'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
  

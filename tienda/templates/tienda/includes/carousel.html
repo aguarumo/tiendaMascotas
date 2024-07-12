@@ -8,7 +8,7 @@
   </div>
   <div class="carousel-inner">
       <div class="carousel-item active">
-          <a href="main.html">
+          <a href="{% url 'tienda' %}">
               <img src="{% static 'Tienda/Imagenes/Portada 1.png' %}" class="d-block w-100 img-fluid" alt="portada principal">
           </a>
           <div class="carousel-caption d-none d-md-block">
@@ -17,7 +17,7 @@
           </div>
       </div>
       <div class="carousel-item">
-          <a href="Donaciones.html">
+          <a href="{% url 'donaciones' %}">
               <img src="{% static 'Tienda/Imagenes/Portada 2.png' %}" class="d-block w-100 img-fluid" alt="portada donaciones">
           </a>
           <div class="carousel-caption d-none d-md-block">
@@ -26,7 +26,7 @@
           </div>
       </div>
       <div class="carousel-item">
-          <a href="Contacto.html">
+          <a href="{% url 'formulario' %}">
               <img src="{% static 'Tienda/Imagenes/portadacarousel3.png' %}" class="d-block w-100 img-fluid" alt="portada descuentos">
           </a>
           <div class="carousel-caption d-none d-md-block">
@@ -35,7 +35,7 @@
           </div>
       </div>
       <div class="carousel-item">
-          <a href="Nosotros.html" data-target="nosotros">
+          <a href="{% url 'nosotros' %}" data-target="nosotros">
               <img src="{% static 'Tienda/Imagenes/Portada 4.jpg' %}" class="d-block w-100 img-fluid" alt="portada nosotros">
           </a>
           <div class="carousel-caption d-none d-md-block">
